@@ -1,0 +1,14 @@
+[
+  {
+    "href" : "main",
+    "name" : "Glavnaya"
+  },
+  {
+    "href" : "products",
+    "name" : "Tovari"
+  },
+  {
+    "href" : "contacts",
+    "name" : "Kontakti"
+  }
+]
