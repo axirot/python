@@ -8,8 +8,8 @@
 
 {% block body %}
     <h1> Glavnaya </h1>
-    {% if username %}
-        <div>Privet, {{ username|title}}!</div>
+    {% if request.user.is_authenticated %}
+        <div>Privet, {{ request.user.username|title}}!</div>
     {% else %}
         <div>Privet!</div>
     {% endif %}
