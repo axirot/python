@@ -1,11 +1,31 @@
 {% extends 'mainapp/base.html' %}
+{% load custom_tags %}
 
-{% block body %}
-    <h1>Produkti</h1>
-    <ul>
+{% block title %}
+    <title>Продукты</title>
+{% endblock %}
+
+{% block content %}
+    <h1>Products</h1><br>
+    <div>Kolichestvo produktov v korzine: {{ request.user|basket_total_quantity }}</div>
+    <div>Obshaya stoimost: {{ request.user|basket_total_cost }} руб.</div>
+    <h3>Categories</h3>
+    {% include 'mainapp/includes/inc_category_menu.html' %}
+    <br><br>
+    <div style="display: flex; flex-wrap: wrap;" class="category-products clearfix">
         {% for product in products %}
-        <li>{{ product.name }}</li>
+            <div style="margin: 20px" class="block">
+                  <div class="card" style="width: 18rem;">
+                      <img src="/media/{{ product.image }}" class="card-img-top" alt="product">
+                      <div class="card-body">
+                          <h5 class="card-title">{{ product.name }}</h5>
+                          <p class="card-text">{{ product.short_desc }}</p>
+                          <a href="{% url 'basket:add' product.pk %}">Dobavit v korziny</a>
+                          <br>
+                          <a href="{% url 'basket:remove' product.pk %}">Ydalit iz korzini</a>
+                      </div>
+                  </div>
+              </div>
         {% endfor %}
-
-    </ul>
+    </div>
 {% endblock %}
